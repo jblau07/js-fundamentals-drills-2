@@ -27,7 +27,12 @@ var getAllUsernames = function(obj){
  * @return {String}
  */
 
-var hometownCity;
+var hometownCity = function(arr){
+  //console.log(arr);
+  for (var i = 0; i<arr.length; i++){
+    return arr[i].hometown.state.montana.city;
+  }
+}
 
 /* #usersCurrentState
  *
@@ -452,7 +457,7 @@ var addName;
 
 module.exports = {
   getAllUsernames: getAllUsernames,
-  hometownCity: null,
+  hometownCity: hometownCity,
   usersCurrentState: null,
   findAdmin: null,
   addNewMovie: null,
