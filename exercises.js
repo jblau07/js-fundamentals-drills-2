@@ -43,7 +43,16 @@ var hometownCity = function(arr){
  * @return {Object}
  */
 
-var usersCurrentState;
+var usersCurrentState = function(data, usernames){
+  var newObj = {};
+  for (var i = 0; i<data.length; i++){
+    for (var i = 0; i<usernames.length; i++){
+    newObj[usernames[i]] = data[i][1].currentLocation.state;
+  }
+  }return newObj
+  }
+  
+
 
 /* #findAdmin
  *
@@ -458,7 +467,7 @@ var addName;
 module.exports = {
   getAllUsernames: getAllUsernames,
   hometownCity: hometownCity,
-  usersCurrentState: null,
+  usersCurrentState: usersCurrentState,
   findAdmin: null,
   addNewMovie: null,
   favoriteBooks: null,
