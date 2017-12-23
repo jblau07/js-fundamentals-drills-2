@@ -83,7 +83,10 @@ var findAdmin = function(obj){
  * @return {Array}
  */
 
-var addNewMovie;
+var addNewMovie = function(data, id, newMovie){
+  data.data.id[id].favoriteMovies.push(newMovie);
+  return data.data.id[id].favoriteMovies;
+}
 
 /* #favoriteBooks
  *
@@ -478,7 +481,7 @@ module.exports = {
   hometownCity: hometownCity,
   usersCurrentState: usersCurrentState,
   findAdmin: findAdmin,
-  addNewMovie: null,
+  addNewMovie: addNewMovie,
   favoriteBooks: null,
   countTracks: null,
   newTrack: null,
