@@ -62,7 +62,16 @@ var usersCurrentState = function(data, usernames){
  * @return {String}
  */
 
-var findAdmin;
+var findAdmin = function(obj){
+  var users = obj.data.id
+  for (var i in users){
+    if (users[i].admin === true){
+      return users[i].username
+    }
+    //console.log(users[i].admin)
+  }
+  //console.log(obj.data.id);
+}
 
 /* #addNewMovie
  *
@@ -468,7 +477,7 @@ module.exports = {
   getAllUsernames: getAllUsernames,
   hometownCity: hometownCity,
   usersCurrentState: usersCurrentState,
-  findAdmin: null,
+  findAdmin: findAdmin,
   addNewMovie: null,
   favoriteBooks: null,
   countTracks: null,
