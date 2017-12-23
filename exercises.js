@@ -116,7 +116,12 @@ var favoriteBooks = function(obj){
  * @return {Number}
  */
 
-var countTracks;
+var countTracks = function(obj){
+ var result = 0;
+  var trackNumber = Object.keys(obj.devLeague.tracks).length
+  result += trackNumber
+  return result;
+}
 
 /* #fullTimeStatus
  *
@@ -493,7 +498,7 @@ module.exports = {
   findAdmin: findAdmin,
   addNewMovie: addNewMovie,
   favoriteBooks: favoriteBooks,
-  countTracks: null,
+  countTracks: countTracks,
   newTrack: null,
   fullTimeStatus: null,
   bigDataTrack: null,
