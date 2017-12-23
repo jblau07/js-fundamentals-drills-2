@@ -96,7 +96,17 @@ var addNewMovie = function(data, id, newMovie){
  * @return {Array}
  */
 
-var favoriteBooks;
+var favoriteBooks = function(obj){
+  var newArr = [];
+  var newObj = {};
+  var users = obj.data.id;
+  for (var i in users){
+    newObj[users[i].favoriteBook.author] = users[i].favoriteBook.title
+    }
+    newArr.push(newObj);
+  return newArr;
+}
+
 
 /* #countTracks
  *
@@ -482,7 +492,7 @@ module.exports = {
   usersCurrentState: usersCurrentState,
   findAdmin: findAdmin,
   addNewMovie: addNewMovie,
-  favoriteBooks: null,
+  favoriteBooks: favoriteBooks,
   countTracks: null,
   newTrack: null,
   fullTimeStatus: null,
