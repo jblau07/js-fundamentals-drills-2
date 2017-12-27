@@ -132,7 +132,10 @@ var countTracks = function(obj){
  * @return {Object}
  */
 
-var fullTimeStatus;
+var fullTimeStatus = function(data, trackName){
+  data[trackName][0].fullTime.offered = true;
+  return data[trackName][0].fullTime
+}
 
 /* #newTrack
  *
@@ -500,7 +503,7 @@ module.exports = {
   favoriteBooks: favoriteBooks,
   countTracks: countTracks,
   newTrack: null,
-  fullTimeStatus: null,
+  fullTimeStatus: fullTimeStatus,
   bigDataTrack: null,
   incrementAge: null,
   movieRatings: null,
