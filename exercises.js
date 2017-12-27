@@ -6,7 +6,18 @@
  * @return {Array}
  */
 
-var getAllUsernames;
+var getAllUsernames = function(obj){
+  //console.log(obj.data.id);
+  var newArr = [];
+  var users = obj.data.id 
+  for (var i in users){
+    //console.log(users[i].username);
+    newArr.push(users[i].username);
+  }
+  return newArr;
+}
+  
+
 
 /* #hometownCity
  *
@@ -16,7 +27,12 @@ var getAllUsernames;
  * @return {String}
  */
 
-var hometownCity;
+var hometownCity = function(arr){
+  //console.log(arr);
+  for (var i = 0; i<arr.length; i++){
+    return arr[i].hometown.state.montana.city;
+  }
+}
 
 /* #usersCurrentState
  *
@@ -27,7 +43,16 @@ var hometownCity;
  * @return {Object}
  */
 
-var usersCurrentState;
+var usersCurrentState = function(data, usernames){
+  var newObj = {};
+  for (var i = 0; i<data.length; i++){
+    for (var i = 0; i<usernames.length; i++){
+    newObj[usernames[i]] = data[i][1].currentLocation.state;
+  }
+  }return newObj
+  }
+  
+
 
 /* #findAdmin
  *
@@ -37,7 +62,16 @@ var usersCurrentState;
  * @return {String}
  */
 
-var findAdmin;
+var findAdmin = function(obj){
+  var users = obj.data.id
+  for (var i in users){
+    if (users[i].admin === true){
+      return users[i].username
+    }
+    //console.log(users[i].admin)
+  }
+  //console.log(obj.data.id);
+}
 
 /* #addNewMovie
  *
@@ -49,7 +83,10 @@ var findAdmin;
  * @return {Array}
  */
 
-var addNewMovie;
+var addNewMovie = function(data, id, newMovie){
+  data.data.id[id].favoriteMovies.push(newMovie);
+  return data.data.id[id].favoriteMovies;
+}
 
 /* #favoriteBooks
  *
@@ -59,7 +96,17 @@ var addNewMovie;
  * @return {Array}
  */
 
-var favoriteBooks;
+var favoriteBooks = function(obj){
+  var newArr = [];
+  var newObj = {};
+  var users = obj.data.id;
+  for (var i in users){
+    newObj[users[i].favoriteBook.author] = users[i].favoriteBook.title
+    }
+    newArr.push(newObj);
+  return newArr;
+}
+
 
 /* #countTracks
  *
@@ -69,7 +116,12 @@ var favoriteBooks;
  * @return {Number}
  */
 
-var countTracks;
+var countTracks = function(obj){
+ var result = 0;
+  var trackNumber = Object.keys(obj.devLeague.tracks).length
+  result += trackNumber
+  return result;
+}
 
 /* #fullTimeStatus
  *
@@ -80,7 +132,10 @@ var countTracks;
  * @return {Object}
  */
 
-var fullTimeStatus;
+var fullTimeStatus = function(data, trackName){
+  data[trackName][0].fullTime.offered = true;
+  return data[trackName][0].fullTime
+}
 
 /* #newTrack
  *
@@ -440,15 +495,15 @@ var getPrices;
 var addName;
 
 module.exports = {
-  getAllUsernames: null,
-  hometownCity: null,
-  usersCurrentState: null,
-  findAdmin: null,
-  addNewMovie: null,
-  favoriteBooks: null,
-  countTracks: null,
+  getAllUsernames: getAllUsernames,
+  hometownCity: hometownCity,
+  usersCurrentState: usersCurrentState,
+  findAdmin: findAdmin,
+  addNewMovie: addNewMovie,
+  favoriteBooks: favoriteBooks,
+  countTracks: countTracks,
   newTrack: null,
-  fullTimeStatus: null,
+  fullTimeStatus: fullTimeStatus,
   bigDataTrack: null,
   incrementAge: null,
   movieRatings: null,
